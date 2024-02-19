@@ -21,11 +21,16 @@ namespace CoreGames.GameName
         private float xValue = 4;
         private float yValue;
         private float moveSpeed;
+        private float forwardMove = 5f;
         private float jumpPower = 4f;
+        private float colliderHeight;
+        private float colliderCenter;
 
         void Start()
         {
             characterController = GetComponent<CharacterController>();
+            colliderHeight = characterController.height;
+            colliderCenter = characterController.center.y;
             animator = GetComponent<Animator>();
             transform.position = Vector3.zero;
         }
@@ -40,6 +45,7 @@ namespace CoreGames.GameName
             isSwipeLeft = Input.GetKeyDown(KeyCode.A);
             isSwipeRight = Input.GetKeyDown(KeyCode.D);
             isSwipeUp = Input.GetKeyDown(KeyCode.W);
+            isSwipeDown = Input.GetKeyDown(KeyCode.S);
 
             if (isSwipeLeft)
             {
@@ -68,17 +74,16 @@ namespace CoreGames.GameName
                 }
             }
 
-            Vector3 moveVector = new Vector3(moveSpeed - transform.position.x, yValue * Time.deltaTime, 0);
+            Vector3 moveVector = new Vector3(moveSpeed - transform.position.x, yValue * Time.deltaTime, forwardMove * Time.deltaTime);
             moveSpeed = Mathf.Lerp(moveSpeed, newPosition, Time.deltaTime * 10f);
             characterController.Move(moveVector);
 
             Jumping();
+            Sliding();
         }
 
         private void Jumping()
         {
-            
-
             if (characterController.isGrounded)
             {
                 if (isSwipeUp)
@@ -92,5 +97,17 @@ namespace CoreGames.GameName
                 yValue -= jumpPower * 2 * Time.deltaTime;
             }
         }
+
+        private void Sliding()
+        {
+            if (isSwipeDown)
+            {
+                yValue -= 10f;
+                characterController.center = new Vector3(0, colliderCenter/2f, 0);
+                characterController.height = colliderHeight / 2f;
+                animator.CrossFadeInFixedTime("Slide", 0.1f);
+            }
+        }
     }
+
 }
