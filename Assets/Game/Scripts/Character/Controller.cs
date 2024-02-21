@@ -74,7 +74,7 @@ namespace CoreGames.GameName
                 }
             }
 
-            Vector3 moveVector = new Vector3(moveSpeed - transform.position.x, yValue * Time.deltaTime, forwardMove * Time.deltaTime);
+            Vector3 moveVector = new Vector3(moveSpeed - transform.position.x, yValue * Time.deltaTime, 0);
             moveSpeed = Mathf.Lerp(moveSpeed, newPosition, Time.deltaTime * 10f);
             characterController.Move(moveVector);
 
