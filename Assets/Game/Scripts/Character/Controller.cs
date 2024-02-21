@@ -18,7 +18,7 @@ namespace CoreGames.GameName
         private Animator animator;
 
         private float newPosition = 0f;
-        private float xValue = 4;
+        private float xValue = 5;
         private float yValue;
         private float moveSpeed;
         private float forwardMove = 5f;
