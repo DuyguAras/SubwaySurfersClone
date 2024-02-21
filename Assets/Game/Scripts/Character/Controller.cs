@@ -105,7 +105,7 @@ namespace CoreGames.GameName
                 yValue -= 10f;
                 characterController.center = new Vector3(0, colliderCenter/2f, 0);
                 characterController.height = colliderHeight / 2f;
-                animator.CrossFadeInFixedTime("Slide", 0.1f);
+                animator.CrossFadeInFixedTime("Roll", 0.1f);
             }
         }
     }
