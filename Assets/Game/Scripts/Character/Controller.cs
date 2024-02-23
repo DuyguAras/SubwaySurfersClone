@@ -18,11 +18,11 @@ namespace CoreGames.GameName
         private Animator animator;
 
         private float newPosition = 0f;
-        private float xValue = 5;
+        private float xValue = 4f;
         private float yValue;
         private float moveSpeed;
         private float forwardMove = 5f;
-        private float jumpPower = 4f;
+        private float jumpPower = 8f;
         private float colliderHeight;
         private float colliderCenter;
 

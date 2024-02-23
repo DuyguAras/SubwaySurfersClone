@@ -19,7 +19,7 @@ namespace CoreGames.GameName
 
         public void SpawnGround()
         {
-            ObjectPooler.instance.SpawnFromPool("Ground", new Vector3(-7.5f, 0, 50f), Quaternion.identity);
+            ObjectPooler.instance.SpawnFromPool("Ground", new Vector3(-6f, 0, 50f), Quaternion.identity);
         }
     }
 }
