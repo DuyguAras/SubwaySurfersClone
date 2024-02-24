@@ -133,7 +133,7 @@ namespace CoreGames.GameName
         {
             if (other.gameObject.CompareTag("Obstacle"))
             {
-                Debug.LogError("Obstacle");
+                Debug.Log("Touch the obstacle");
                 EventBus<GamePrepareEvent>.Emit(this, new GamePrepareEvent());
                 transform.position = Vector3.zero;
             }
