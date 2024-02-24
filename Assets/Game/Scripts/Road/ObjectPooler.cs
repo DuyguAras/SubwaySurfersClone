@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace CoreGames.GameName
 {
@@ -53,6 +54,13 @@ namespace CoreGames.GameName
                 return null;
             }
 
+            
+
+            for (int i = 0; i < ; i++)
+            {
+                
+            }
+
             objectToSpawn = poolDictionary[type].Dequeue();
             objectToSpawn.SetActive(true);
             objectToSpawn.transform.position = position;
@@ -61,11 +69,6 @@ namespace CoreGames.GameName
             poolDictionary[type].Enqueue(objectToSpawn);
 
             return objectToSpawn;
-        }
-        
-        void Update()
-        {
-        
         }
     }
 }
