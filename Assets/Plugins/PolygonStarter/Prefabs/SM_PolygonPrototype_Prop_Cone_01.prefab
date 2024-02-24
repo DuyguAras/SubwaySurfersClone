@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4812002822647660}
   - component: {fileID: 33785153285434078}
   - component: {fileID: 23672589033054590}
-  - component: {fileID: 64716801127992332}
+  - component: {fileID: 794527659693024162}
   m_Layer: 0
   m_Name: SM_PolygonPrototype_Prop_Cone_01
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64716801127992332
-MeshCollider:
+--- !u!65 &794527659693024162
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -99,10 +99,9 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 10f4e51254da985418a112d2dfe124f0, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.5000935, y: 0.82496864, z: 0.45319125}
+  m_Center: {x: 0.023444146, y: 0.41248432, z: 0.00000081956387}

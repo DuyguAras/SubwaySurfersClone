@@ -14,7 +14,7 @@ namespace CoreGames.GameName
     public class Controller : MonoBehaviour
     {
         [SerializeField] private float zForwardSpeed;
-        
+
         private Side side = Side.Mid;
 
         private bool isSwipeLeft, isSwipeRight, isSwipeUp, isSwipeDown;
@@ -27,7 +27,7 @@ namespace CoreGames.GameName
         private float yValue;
         private float moveSpeed;
         private float forwardMove = 5f;
-        private float jumpPower = 8f;
+        [SerializeField] private float jumpPower = 6f;
         private float colliderHeight;
         private float colliderCenter;
 
