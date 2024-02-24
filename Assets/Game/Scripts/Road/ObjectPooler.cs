@@ -54,13 +54,6 @@ namespace CoreGames.GameName
                 return null;
             }
 
-            
-
-            for (int i = 0; i < ; i++)
-            {
-                
-            }
-
             objectToSpawn = poolDictionary[type].Dequeue();
             objectToSpawn.SetActive(true);
             objectToSpawn.transform.position = position;

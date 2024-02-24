@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using CoreGames.GameName.Events.States;
+using CoreGames.GameName.EventSystem;
+using CoreGames.GameName.Managers;
 
 [System.Serializable]
 
@@ -10,6 +13,8 @@ namespace CoreGames.GameName
 {
     public class Controller : MonoBehaviour
     {
+        [SerializeField] private float zForwardSpeed;
+        
         private Side side = Side.Mid;
 
         private bool isSwipeLeft, isSwipeRight, isSwipeUp, isSwipeDown;
@@ -18,13 +23,25 @@ namespace CoreGames.GameName
         private Animator animator;
 
         private float newPosition = 0f;
-        private float xValue = 4f;
+        [SerializeField] private float xValue = 4f;
         private float yValue;
         private float moveSpeed;
         private float forwardMove = 5f;
         private float jumpPower = 8f;
         private float colliderHeight;
         private float colliderCenter;
+
+        private void OnEnable()
+        {
+            EventBus<GameStartEvent>.AddListener(StartGame);
+            EventBus<GamePrepareEvent>.AddListener(PrepareGame);
+        }
+
+        private void OnDisable()
+        {
+            EventBus<GameStartEvent>.RemoveListener(StartGame);
+            EventBus<GamePrepareEvent>.RemoveListener(PrepareGame);
+        }
 
         void Start()
         {
@@ -74,10 +91,13 @@ namespace CoreGames.GameName
                 }
             }
 
-            Vector3 moveVector = new Vector3(moveSpeed - transform.position.x, yValue * Time.deltaTime, 0);
-            moveSpeed = Mathf.Lerp(moveSpeed, newPosition, Time.deltaTime * 10f);
-            characterController.Move(moveVector);
-
+            if (GameStateManager.Instance.GetGameState() == GameStateManager.GameState.Start)
+            {
+                Vector3 moveVector = new Vector3(moveSpeed - transform.position.x, yValue * Time.deltaTime, zForwardSpeed * Time.deltaTime);
+                moveSpeed = Mathf.Lerp(moveSpeed, newPosition, Time.deltaTime * 10f);
+                characterController.Move(moveVector);
+            }
+            
             Jumping();
             Sliding();
         }
@@ -108,6 +128,25 @@ namespace CoreGames.GameName
                 animator.CrossFadeInFixedTime("Roll", 0.1f);
             }
         }
-    }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Obstacle"))
+            {
+                Debug.LogError("Obstacle");
+                EventBus<GamePrepareEvent>.Emit(this, new GamePrepareEvent());
+                transform.position = Vector3.zero;
+            }
+        }
+
+        private void StartGame(object sender, GameStartEvent e)
+        {
+            animator.SetBool("isGameStarted", true);
+        }
+        
+        private void PrepareGame(object sender, GamePrepareEvent e)
+        {
+            animator.SetBool("isGameStarted", false);
+        }
+    }
 }
