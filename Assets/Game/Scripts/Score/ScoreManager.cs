@@ -1,16 +1,18 @@
-using System;
-using System.Collections.Generic;
+using CoreGames.GameName.Events.States;
+using CoreGames.GameName.EventSystem;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace CoreGames.GameName
 {
     public class ScoreManager : MonoBehaviour
     {
-
         private float distance;
         private float highscore;
+
+        private bool isHighscored = false;
+
+        private Color mainHighscoreColor;
 
         [SerializeField] private TextMeshProUGUI scoreText;
         [SerializeField] private TextMeshProUGUI highscoreText;
@@ -18,13 +20,20 @@ namespace CoreGames.GameName
         [SerializeField] private GameObject scoreTextObject;
         [SerializeField] private GameObject highscoreTextObject;
 
-        
+        private void OnEnable()
+        {
+            EventBus<GamePrepareEvent>.AddListener(PrepareGame);
+        }
+        private void OnDisable()
+        {
+            EventBus<GamePrepareEvent>.RemoveListener(PrepareGame);
+        }
+
         void Start()
         {
             scoreText = scoreTextObject.GetComponent<TextMeshProUGUI>();
             highscoreText = highscoreTextObject.GetComponent <TextMeshProUGUI>();
-            highscore = PlayerPrefs.GetInt("Highscore: ", 0);
-            
+            highscore = PlayerPrefs.GetInt("Highscore: ", 0);   
         }
         void Update()
         {
@@ -45,8 +54,22 @@ namespace CoreGames.GameName
             {
                 highscore = score;
                 highscoreText.text = "Highscore: " + highscore.ToString();
-                PlayerPrefs.GetInt("Highscore", 0);
+
+                if (!isHighscored)
+                {
+                    isHighscored = true;
+                    highscoreText.color = Color.red;
+                }
             }
+            
+        }
+
+        private void PrepareGame(object sender, GamePrepareEvent e)
+        {
+            isHighscored = false;
+
+            mainHighscoreColor = Color.black;
+            highscoreText.color = mainHighscoreColor;
         }
     }
 }
