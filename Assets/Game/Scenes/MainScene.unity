@@ -1940,8 +1940,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 413503022}
+  highscoreText: {fileID: 882390141}
   startPosition: {fileID: 568081679}
   scoreTextObject: {fileID: 413503020}
+  highscoreTextObject: {fileID: 882390140}
 --- !u!1 &1355214032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2880,7 +2882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3795346372269237517, guid: 0573b37ed98bb9645aca1e79264e6df4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.37
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 3871931806390596164, guid: 0573b37ed98bb9645aca1e79264e6df4, type: 3}
       propertyPath: m_Enabled
@@ -2960,7 +2962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6767591363940870953, guid: 0573b37ed98bb9645aca1e79264e6df4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.37
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6851326067601786869, guid: 0573b37ed98bb9645aca1e79264e6df4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2984,7 +2986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8098048830192241179, guid: 0573b37ed98bb9645aca1e79264e6df4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3699999
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8110444838368075769, guid: 0573b37ed98bb9645aca1e79264e6df4, type: 3}
       propertyPath: m_LocalPosition.x
