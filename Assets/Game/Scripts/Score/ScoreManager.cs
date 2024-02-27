@@ -11,6 +11,7 @@ namespace CoreGames.GameName
         private float highscore;
 
         [SerializeField] private int goldScore;
+        private int scoreMultiplier;
 
         private bool isHighscored = false;
 
@@ -44,7 +45,7 @@ namespace CoreGames.GameName
 
         private void AddScore()
         {
-            distance = (startPosition.transform.position.z + this.transform.position.z);
+            distance = (startPosition.transform.position.z + this.transform.position.z + scoreMultiplier);
             scoreText.text = distance.ToString("Score: " + "0");
 
             AddHighscore((int)distance);
@@ -75,9 +76,9 @@ namespace CoreGames.GameName
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            if (hit.gameObject.tag == "Collectable")
+            if (hit.gameObject.CompareTag("Collectable"))
             {
-                distance += goldScore;
+                scoreMultiplier += goldScore;
                 Destroy(hit.gameObject);
                 Debug.Log("gold is collected " + goldScore);
             }
