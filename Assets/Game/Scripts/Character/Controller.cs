@@ -26,7 +26,6 @@ namespace CoreGames.GameName
         [SerializeField] private float xValue = 4f;
         private float yValue;
         private float moveSpeed;
-        private float forwardMove = 5f;
         [SerializeField] private float jumpPower = 6f;
         private float colliderHeight;
         private float colliderCenter;

@@ -10,6 +10,8 @@ namespace CoreGames.GameName
         private float distance;
         private float highscore;
 
+        [SerializeField] private int goldScore;
+
         private bool isHighscored = false;
 
         private Color mainHighscoreColor;
@@ -61,7 +63,6 @@ namespace CoreGames.GameName
                     highscoreText.color = Color.red;
                 }
             }
-            
         }
 
         private void PrepareGame(object sender, GamePrepareEvent e)
@@ -70,6 +71,16 @@ namespace CoreGames.GameName
 
             mainHighscoreColor = Color.black;
             highscoreText.color = mainHighscoreColor;
+        }
+
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            if (hit.gameObject.tag == "Collectable")
+            {
+                distance += goldScore;
+                Destroy(hit.gameObject);
+                Debug.Log("gold is collected " + goldScore);
+            }
         }
     }
 }

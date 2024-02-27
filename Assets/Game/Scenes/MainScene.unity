@@ -1939,6 +1939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e339009fe2a76af4781f1ccad640d24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldScore: 10
   scoreText: {fileID: 413503022}
   highscoreText: {fileID: 882390141}
   startPosition: {fileID: 568081679}
