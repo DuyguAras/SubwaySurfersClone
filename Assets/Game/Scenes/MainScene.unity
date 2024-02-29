@@ -1857,7 +1857,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1268560294735226, guid: 68617247be1cad64d8dfe7e3cbbb3174, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1346365781}
+    - targetCorrespondingSourceObject: {fileID: 1268560294735226, guid: 68617247be1cad64d8dfe7e3cbbb3174, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1346365785}
   m_SourcePrefab: {fileID: 100100000, guid: 68617247be1cad64d8dfe7e3cbbb3174, type: 3}
+--- !u!137 &1280073862 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137843533523938178, guid: 68617247be1cad64d8dfe7e3cbbb3174, type: 3}
+  m_PrefabInstance: {fileID: 1247851268}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1319957057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,6 +1957,19 @@ MonoBehaviour:
   startPosition: {fileID: 568081679}
   scoreTextObject: {fileID: 413503020}
   highscoreTextObject: {fileID: 882390140}
+--- !u!114 &1346365785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346365780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4968f94beef708c44bc0db32a7526dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterMat: {fileID: 1280073862}
 --- !u!1 &1355214032
 GameObject:
   m_ObjectHideFlags: 0
