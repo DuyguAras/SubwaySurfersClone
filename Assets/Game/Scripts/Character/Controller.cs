@@ -23,9 +23,10 @@ namespace CoreGames.GameName
         private Animator animator;
 
         private float newPosition = 0f;
-        [SerializeField] private float xValue = 4f;
+        [SerializeField] private float slideValue = 4f;
         private float yValue;
         private float moveSpeed;
+        [SerializeField] private float maxSpeed;
         [SerializeField] private float jumpPower = 6f;
         private float colliderHeight;
         private float colliderCenter;
@@ -67,7 +68,7 @@ namespace CoreGames.GameName
             {
                 if (side == Side.Mid)
                 {
-                    newPosition = -xValue;
+                    newPosition = -slideValue;
                     side = Side.Left;
                 }
                 else if (side == Side.Right)
@@ -80,7 +81,7 @@ namespace CoreGames.GameName
             {
                 if (side == Side.Mid)
                 {
-                    newPosition = xValue;
+                    newPosition = slideValue;
                     side = Side.Right;
                 }
                 else if (side == Side.Left)
@@ -95,6 +96,11 @@ namespace CoreGames.GameName
                 Vector3 moveVector = new Vector3(moveSpeed - transform.position.x, yValue * Time.deltaTime, zForwardSpeed * Time.deltaTime);
                 moveSpeed = Mathf.Lerp(moveSpeed, newPosition, Time.deltaTime * 10f);
                 characterController.Move(moveVector);
+            }
+
+            if (zForwardSpeed < maxSpeed)
+            {
+                zForwardSpeed += 0.05f * Time.deltaTime;
             }
             
             Jumping();
