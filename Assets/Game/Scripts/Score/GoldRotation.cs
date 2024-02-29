@@ -1,20 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using CoreGames.GameName.Events.States;
+using CoreGames.GameName.EventSystem;
 
 namespace CoreGames.GameName
 {
     public class GoldRotation : MonoBehaviour
     {
-        void Start()
+        private void OnEnable()
         {
-            transform.DORotate(new Vector3(0, 180, 0), 1f).SetLoops(-1, LoopType.Incremental);
+            EventBus<GameStartEvent>.AddListener(GameStart);
+        }
+        private void OnDisable()
+        {
+            EventBus<GameStartEvent>.RemoveListener(GameStart);
         }
 
-        void Update()
+        private void GameStart(object sender, GameStartEvent e)
         {
-            
+            transform.DORotate(new Vector3(0, 180, 0), 1f).SetLoops(-1, LoopType.Incremental);
         }
     }
 }
