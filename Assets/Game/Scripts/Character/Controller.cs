@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 using CoreGames.GameName.Events.States;
 using CoreGames.GameName.EventSystem;
 using CoreGames.GameName.Managers;
 
-[System.Serializable]
-
-public enum Side {Left, Mid, Right}
+[Serializable]
+public enum Side { Left, Mid, Right }
 namespace CoreGames.GameName
 {
     public class Controller : MonoBehaviour
@@ -22,14 +19,17 @@ namespace CoreGames.GameName
         private CharacterController characterController;
         private Animator animator;
 
-        private float newPosition = 0f;
         [SerializeField] private float slideValue = 4f;
-        private float yValue;
-        private float moveSpeed;
         [SerializeField] private float maxSpeed;
         [SerializeField] private float jumpPower = 6f;
+        private float newPosition = 0f;
+        private float yValue;
+        private float moveSpeed;
         private float colliderHeight;
         private float colliderCenter;
+
+        private int healthCounter;
+        private float initialColliderSize;
 
         private void OnEnable()
         {
@@ -50,6 +50,7 @@ namespace CoreGames.GameName
             colliderCenter = characterController.center.y;
             animator = GetComponent<Animator>();
             transform.position = Vector3.zero;
+            initialColliderSize = characterController.height;
         }
 
         void Update()
@@ -102,7 +103,7 @@ namespace CoreGames.GameName
             {
                 zForwardSpeed += 0.05f * Time.deltaTime;
             }
-            
+
             Jumping();
             Sliding();
         }
@@ -128,30 +129,29 @@ namespace CoreGames.GameName
             if (isSwipeDown)
             {
                 yValue -= 10f;
-                characterController.center = new Vector3(0, colliderCenter/2f, 0);
+                characterController.center = new Vector3(0, colliderCenter / 2f, 0);
                 characterController.height = colliderHeight / 2f;
                 animator.CrossFadeInFixedTime("Roll", 0.1f);
+                Invoke(nameof(SizeOfColliderDelay), 0.75f);
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void SizeOfColliderDelay()
         {
-            if (other.gameObject.CompareTag("Obstacle"))
-            {
-                Debug.Log("Touch the obstacle");
-                EventBus<GamePrepareEvent>.Emit(this, new GamePrepareEvent());
-                transform.position = Vector3.zero;
-            }
+            characterController.center = new Vector3(0, colliderCenter, 0);
+            characterController.height = initialColliderSize;
         }
 
         private void StartGame(object sender, GameStartEvent e)
         {
             animator.SetBool("isGameStarted", true);
         }
-        
+
         private void PrepareGame(object sender, GamePrepareEvent e)
         {
             animator.SetBool("isGameStarted", false);
+            newPosition = 0f;
+            side = Side.Mid;
         }
     }
 }
