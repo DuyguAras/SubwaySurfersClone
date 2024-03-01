@@ -145,6 +145,7 @@ namespace CoreGames.GameName
         private void StartGame(object sender, GameStartEvent e)
         {
             animator.SetBool("isGameStarted", true);
+            zForwardSpeed = 7f;
         }
 
         private void PrepareGame(object sender, GamePrepareEvent e)
