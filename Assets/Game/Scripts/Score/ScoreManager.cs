@@ -79,7 +79,7 @@ namespace CoreGames.GameName
             if (hit.gameObject.CompareTag("Collectable"))
             {
                 scoreMultiplier += goldScore;
-                Destroy(hit.gameObject);
+                hit.gameObject.SetActive(false);
                 Debug.Log("gold is collected " + goldScore);
             }
         }
