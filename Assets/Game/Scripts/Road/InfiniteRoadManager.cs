@@ -48,13 +48,16 @@ public class InfiniteRoadManager : MonoBehaviour
         {
             currentTime -= Time.deltaTime;
 
+            if (spawnInterval > 7)
+            {
+                spawnInterval -= 0.15f * Time.deltaTime;
+            }
+
             if (currentTime <= 0)
             {
-                if (canSpawn)
-                    Debug.Log("sa");
-                else
+                if (!canSpawn)
                     SortPrefab();
-
+           
                 currentTime = spawnInterval;
             }
         }
@@ -123,6 +126,7 @@ public class InfiniteRoadManager : MonoBehaviour
         }
 
         isCountable = false;
+        spawnInterval = 15;
         currentTime = spawnInterval;
         isFirstPrepare = false;
     }
